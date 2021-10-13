@@ -1,0 +1,243 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="expires" content="0"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no"/>
+<script type="text/javascript" src="js/ui.lib.js"></script>
+<title>아프리카TV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="texthtml; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<style>
+	html{width:100%;min-height:100%;padding:0px;margin:0px;}
+	body{color: #363636;min-height:100%;font-size:12px;font-family:sans-serif;line-height:1.2;padding:0;margin:0;-webkit-text-size-adjust:none;background:#f5f5f5;word-wrap:break-word;word-break: keep-all;}
+	div, p, ol, ul, li, img, a, h1, h2, h3, h4, h5, h6 form, span, iframe, dl, dt, dd, button, span{margin:0px;padding:0px;border:0;}
+	ul, ol, li{list-style:none;}
+	button, span, label{display:inline-block;background:none;border:0;}
+	table, th, td{border-collapse:collapse;margin:0;padding:0;}
+	table caption{display:none;}
+	select, input, textarea{font-family:dotum,AppleGothic,sans-serif;color:#363636;padding:0;margin:0;}
+	textarea, iframe{font-size:12px;font-family:dotum,AppleGothic,sans-serif;color:#363636;outline-style:none;}
+	input, select{outline-style:none;outline:none;background:#fff;color:#363636;}
+	fieldset{border:0;margin:0;padding:0;}
+	legend{display:none;}
+	a:link, a:visited, a:active{color:#6c6c6c;text-decoration:none;padding:0;/*outline-style:none;*/}
+	a:hover{color:#6c6c6c;text-decoration:underline;}
+	img{border:0;margin:0;}
+
+	.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;margin:0;padding:0;}
+	.clearfix{display:inline-block;}
+
+	/* Hides from IE-mac \*/
+	* html .clearfix{height:1%;}
+	.clearfix{display: block;}
+	/* End hide from IE-mac */
+
+	body{background:#fff;}
+	#wrap{box-sizing:border-box; padding:0 10px 50px 10px;}
+	.tit{width:100%;padding:20px 0 10px;overflow:hidden;}
+	.tit h1{font-size:22px;padding:0;float:left;}
+	.tit p{padding:10px 10px 0 0;float:right;}
+	.tit p .date{font-size:14px;font-weight:bold;color:red;}
+	.txt{margin:10px 0 0;border-top:1px solid #ccc;padding-top:10px;}
+	.txt li{list-style:disc;margin:0 0 0 20px;line-height:18px;color:#777}
+	.txt li ul{margin:2px 0 2px 0}
+	.txt li ul li{ list-style:none}
+	h2 {margin-top:10px;}
+
+	.list{width:100%; margin-top:15px;}
+	.list th{background:#ddd;color:#000;}
+	.list th, table.list td{border:1px solid #333;padding:5px 7px;}
+	.list td{color:#333;word-break:break-all;white-space:nowrap;overflow-X:hidden;text-overflow:hidden;}
+	.list tbody tr:last-child td {border-bottom:2px solid #333;} {  }
+	.list tr td:first-child {text-align:center;}
+	.list td a {color:blue;}
+	.list td:first-child{text-align:right;}/* number */
+	.list td:nth-child(2){font-weight:bold;}/* 1depth */
+	.list tr.even td {background:#f1f1f1;}
+	.list tr:hover td{background:#F11C25;color:#fff}
+	.list tr:hover td a {color:#fff}
+	.list tr.cut td{}
+	.list tr.cut td.center{text-align:center;}
+	.list tr.del td,
+	.list tr.del td *{color:#999 !important;}
+	.list tr.del td{text-decoration:line-through;}
+	.list tr.del td:first-child{text-decoration:none;font-size:11px;}
+	.list tr.del td.bigo{text-decoration:none;}
+
+	.type{text-align:center;}
+	.html{color:#666 !important;}
+	.bbs{color:#00cc00 !important;}
+	.pgm{color:#cc0000 !important;}
+	.link{color:#0000cc !important;}
+
+	.date{text-align:center;}
+	.last{background:#F63 !important;color:#fff !important;}
+	.nowork{background:#666 !important;color:#fff !important;}
+	.bigo{text-align:center;}
+	.red{color:red;}
+	.bold{font-weight:bold;}
+
+	.date1 {text-align:center;}
+
+	.link {padding:10px 0; border-top:1px solid #ddd; border-bottom:1px solid #ddd;}
+	.link a {display:inline-block; background:#ddd; color:#333; padding:5px 10px;}
+</style>
+<script type="text/javascript">
+//<![CDATA[
+	//테이블 tr over효과
+	$(document).ready(function() {
+		$(".list").each(function(){
+			$(this).find("tr:not(.del)").each(function(index){
+				$("td:first-child", this).text(index);
+			});
+			$(this).find("tr:even").each(function(index){
+				$(this).addClass("even");
+			});
+		});
+		$(".list tr.del tbody td:first-child").text("삭제");
+		$tr = $(".list:not(.guide) tr:not(.del)");
+		$("#rate").html("( 총:"+$tr.length+" / 잔여:"+$("td.date:empty",$tr).length+" / 진행:"+parseInt((($tr.length-$("td.date:empty",$tr).length)/$tr.length*100))+"% )");
+
+		//날짜 출력
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = new String(date.getMonth()+1);
+		var day = new String(date.getDate());
+
+		$(".today").text(year + "년 " + month + "월 " + day + "일");
+	});
+	//'table tr:gt(0) 0보다 큰것만 마우스 오버 효과가 나타남
+//]]>
+</script>
+</head>
+<body>
+<div id="wrap">
+	<div class="tit">
+		<h1>아프리카TV</h1>
+		<p>
+			<span class="today red bold"></span>
+			<span id="rate"></span><br />
+		</p>
+	</div>
+
+	<table class="list">
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>Depth 3</th>
+				<th>Depth 4</th>
+				<th>Depth 5</th>
+				<th>Folder Location</th>
+				<th>File Name</th>
+				<th>시작일</th>
+				<th>종료일</th>
+				<th>상태</th>
+				<th>수정내역</th>
+				<th>비고</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td><!-- No. -->
+				<td>메인</td><!-- Depth 1 -->
+				<td></td><!-- Depth 2 -->
+				<td></td><!-- Depth 3 -->
+				<td></td><!-- Depth 4 -->
+				<td></td><!-- Depth 5 -->
+				<td></td><!-- Folder Location -->
+				<td><a target="_blank" href="index.html">index.html</a></td><!-- File Name -->
+				<td></td><!-- 시작일 -->
+				<td></td><!-- 종료일 -->
+				<td class="date">완료</td><!-- 상태 완료-->
+				<td></td><!-- 수정내역 -->
+				<td></td><!-- 비고 -->
+			</tr>
+			<tr>
+				<td>2</td><!-- No. -->
+				<td>대회안내</td><!-- Depth 1 -->
+				<td></td><!-- Depth 2 -->
+				<td></td><!-- Depth 3 -->
+				<td></td><!-- Depth 4 -->
+				<td></td><!-- Depth 5 -->
+				<td></td><!-- Folder Location -->
+				<td><a target="_blank" href="sub01.html">sub01.html</a></td><!-- File Name -->
+				<td></td><!-- 시작일 -->
+				<td></td><!-- 종료일 -->
+				<td class="date">완료</td><!-- 상태 완료-->
+				<td></td><!-- 수정내역 -->
+				<td></td><!-- 비고 -->
+			</tr>
+			<tr>
+				<td>3</td><!-- No. -->
+				<td>종목안내</td><!-- Depth 1 -->
+				<td></td><!-- Depth 2 -->
+				<td></td><!-- Depth 3 -->
+				<td></td><!-- Depth 4 -->
+				<td></td><!-- Depth 5 -->
+				<td></td><!-- Folder Location -->
+				<td><a target="_blank" href="sub02.html">sub02.html</a></td><!-- File Name -->
+				<td></td><!-- 시작일 -->
+				<td></td><!-- 종료일 -->
+				<td class="date">완료</td><!-- 상태 완료-->
+				<td></td><!-- 수정내역 -->
+				<td></td><!-- 비고 -->
+			</tr>
+			<tr>
+				<td>4</td><!-- No. -->
+				<td>선수 소개</td><!-- Depth 1 -->
+				<td></td><!-- Depth 2 -->
+				<td></td><!-- Depth 3 -->
+				<td></td><!-- Depth 4 -->
+				<td></td><!-- Depth 5 -->
+				<td></td><!-- Folder Location -->
+				<td><a target="_blank" href="sub03.html">sub03.html</a></td><!-- File Name -->
+				<td></td><!-- 시작일 -->
+				<td></td><!-- 종료일 -->
+				<td class="date"></td><!-- 상태 완료-->
+				<td></td><!-- 수정내역 -->
+				<td></td><!-- 비고 -->
+			</tr>
+			<tr>
+				<td>5</td><!-- No. -->
+				<td>대회 일정 · 대회 결과</td><!-- Depth 1 -->
+				<td></td><!-- Depth 2 -->
+				<td></td><!-- Depth 3 -->
+				<td></td><!-- Depth 4 -->
+				<td></td><!-- Depth 5 -->
+				<td></td><!-- Folder Location -->
+				<td><a target="_blank" href="sub04.html">sub04.html</a></td><!-- File Name -->
+				<td></td><!-- 시작일 -->
+				<td></td><!-- 종료일 -->
+				<td class="date"></td><!-- 상태 완료-->
+				<td></td><!-- 수정내역 -->
+				<td></td><!-- 비고 -->
+			</tr>
+			<tr>
+				<td>6</td><!-- No. -->
+				<td>장소 안내</td><!-- Depth 1 -->
+				<td></td><!-- Depth 2 -->
+				<td></td><!-- Depth 3 -->
+				<td></td><!-- Depth 4 -->
+				<td></td><!-- Depth 5 -->
+				<td></td><!-- Folder Location -->
+				<td><a target="_blank" href="sub05.html">sub05.html</a></td><!-- File Name -->
+				<td></td><!-- 시작일 -->
+				<td></td><!-- 종료일 -->
+				<td class="date">완료</td><!-- 상태 완료-->
+				<td></td><!-- 수정내역 -->
+				<td></td><!-- 비고 -->
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+</body>
+<html>
